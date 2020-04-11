@@ -33,13 +33,14 @@ public interface FlightDao {
     // TODO -- remove comments on following
 
 
-//    @Query("select * from User")
-//    List<Flight> getAllUsers();
-//
-//    @Query("select * from User where username = :username")//   List<User> getUserByUsername(String username);
-//
-//    @Insert
-//    void addUser(User user);
+    @Query("select * from User")
+    List<User> getAllUsers();
+
+    @Query("select * from User where username = :username")
+    List<User> getUserByUsername(String username);
+
+    @Insert
+    void addUser(User user);
 
 
 

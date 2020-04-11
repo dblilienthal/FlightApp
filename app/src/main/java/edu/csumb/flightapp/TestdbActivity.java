@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import edu.csumb.flightapp.model.Flight;
 import edu.csumb.flightapp.model.FlightDao;
 import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.User;
 
 
 public class TestdbActivity extends AppCompatActivity {
@@ -57,10 +58,10 @@ public class TestdbActivity extends AppCompatActivity {
         // if (reserves.size() >= 1) findViewById(R.id.reserve_testdb).setTextColor(Color.GREEN);
 
         // list users
-        // User user = new User(...);
-        // dao.addUser(user);
-        // List<User> users = dao.getAllUsers();
-        // if (users.size() >= 1) findViewById(R.id.users_testdb).setTextColor(Color.GREEN);
+         User user = new User("Meow", "test");
+         dao.addUser(user);
+         List<User> users = dao.getAllUsers();
+         if (users.size() >= 1) findViewById(R.id.users_testdb).setTextColor(Color.GREEN);
 
         // create and retrieve LogRecord
         // LogRecord record = new LogRecord(...);
