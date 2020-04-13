@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase;
 
 //TODO  update this class to include LogRecord as entity
 
-@Database(entities={Flight.class}, version=1) //User.class
+@Database(entities={Flight.class, User.class}, version=1) //User.class
 public abstract class FlightRoom extends RoomDatabase {
     // singleton
     private static FlightRoom instance;
@@ -30,6 +30,17 @@ public abstract class FlightRoom extends RoomDatabase {
         return instance;
     }
 
+    public static FlightRoom getUserRoom(final Context context){
+        if (instance == null){
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                    FlightRoom.class,
+                    "UserDB")
+                    .allowMainThreadQueries()
+                    .build();
+        }
+        return instance;
+    }
+
     public void loadData(Context context){
 
         // if flight table is empty, then load data for  flights
@@ -38,9 +49,16 @@ public abstract class FlightRoom extends RoomDatabase {
 
         List<Flight> flight_list = FlightRoom.getFlightRoom(context).dao().getAllFlights();
         if (flight_list.size() == 0) {
-            Log.d("FlightRoom", "loading data ");
+            Log.d("FlightRoom", "loading data flights ");
             loadFlights(context);
         }
+
+        List<User> user_list = FlightRoom.getFlightRoom(context).dao().getAllUsers();
+        if (user_list.size() == 0){
+            Log.d("FlightRoom", "loading data Users ");
+
+        }
+
     }
 
     private void loadFlights(Context context){

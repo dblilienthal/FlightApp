@@ -1,9 +1,11 @@
 package edu.csumb.flightapp.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-//@Entity
+@Entity
 public class User {
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -11,10 +13,33 @@ public class User {
     private String username;
     private String password;
 
+    public User () {}
     // no arg constructor
+
+    @Ignore
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 
     // getters and setters
 
+    public long getId() { return id; }
+
+    public String getUsername(){ return username; }
+
+    public String getPassword() { return password; }
+
+    public void setId(long id) { this.id = id; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public void setUsername(String username) { this.username = username; }
+
     // toString
 
+    @Override
+    public String toString(){
+        return "ID: "+id+" Username: "+username+" Password: "+password;
+    }
 }

@@ -30,7 +30,7 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 //   one special char, one uppercase and one lowercase letters, one digit
                 //   display error message using dialog
 
-                // TODO create Account and add to database.
+                // TODO create new User Object and add to database.
 
                 // TODO  write a record to Log table with message that new Account has been created.
                 //  include username (but not password) in the message.
