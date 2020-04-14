@@ -39,9 +39,24 @@ public interface FlightDao {
     @Query("select * from User where username = :username")
     List<User> getUserByUsername(String username);
 
+    //Get all the Reservations
+    @Query("select * from Reservation")
+    List<Reservation> getAllReservations();
+
+    //Get all Log Records
+    @Query("select * from LogRecord")
+    List<LogRecord> getAllLogRecords();
+
     @Insert
     void addUser(User user);
 
+    //Add a reservation
+    @Insert
+    long addReservation(Reservation res);
+
+    //Add a log record
+    @Insert
+    long addLogRecord(LogRecord rec);
 
 
 }

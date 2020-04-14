@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase;
 
 //TODO  update this class to include LogRecord as entity
 
-@Database(entities={Flight.class, User.class}, version=1) //User.class
+@Database(entities={Flight.class, User.class, LogRecord.class, Reservation.class}, version=1) //User.class
 public abstract class FlightRoom extends RoomDatabase {
     // singleton
     private static FlightRoom instance;
