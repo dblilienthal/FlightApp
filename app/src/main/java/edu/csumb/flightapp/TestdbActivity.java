@@ -61,7 +61,9 @@ public class TestdbActivity extends AppCompatActivity {
          User user = new User("Meow", "test");
          dao.addUser(user);
          List<User> users = dao.getAllUsers();
-         if (users.size() >= 1) findViewById(R.id.users_testdb).setTextColor(Color.GREEN);
+         TextView users_testdb = findViewById(R.id.users_testdb);
+         if (users.size() >= 1) users_testdb.setTextColor(Color.GREEN);
+
 
         // create and retrieve LogRecord
          LogRecord record = new LogRecord(...);
