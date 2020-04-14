@@ -51,11 +51,11 @@ public class TestdbActivity extends AppCompatActivity {
 
         // TODO  uncomment and complete the following test code
 
-        // create and retrieve a Reservation
-        // Reservation user = new Reservation(...);
-        // dao.addReservation(reservation);
-        // List<Reservation> reserves = dao.getAllReservations();
-        // if (reserves.size() >= 1) findViewById(R.id.reserve_testdb).setTextColor(Color.GREEN);
+         create and retrieve a Reservation
+         Reservation user = new Reservation(...);
+         dao.addReservation(reservation);
+         List<Reservation> reserves = dao.getAllReservations();
+         if (reserves.size() >= 1) findViewById(R.id.reserve_testdb).setTextColor(Color.GREEN);
 
         // list users
          User user = new User("Meow", "test");
@@ -64,10 +64,10 @@ public class TestdbActivity extends AppCompatActivity {
          if (users.size() >= 1) findViewById(R.id.users_testdb).setTextColor(Color.GREEN);
 
         // create and retrieve LogRecord
-        // LogRecord record = new LogRecord(...);
-        // dao.addLogRecord(record);
-        // List<LogRecord> records  = dao.getAllLogRecords();
-        // if (records.size() >= 1) findViewById(R.id.logrec_testdb).setTextColor(Color.GREEN);
+         LogRecord record = new LogRecord(...);
+         dao.addLogRecord(record);
+         List<LogRecord> records  = dao.getAllLogRecords();
+         if (records.size() >= 1) findViewById(R.id.logrec_testdb).setTextColor(Color.GREEN);
 
 
     }
