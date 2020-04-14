@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase;
 
 //TODO  update this class to include LogRecord as entity
 
-@Database(entities={Flight.class, User.class}, version=1) //User.class
+@Database(entities={Flight.class, User.class, LogRecord.class, Reservation.class}, version=1) //User.class
 public abstract class FlightRoom extends RoomDatabase {
     // singleton
     private static FlightRoom instance;
@@ -30,36 +30,29 @@ public abstract class FlightRoom extends RoomDatabase {
         return instance;
     }
 
-    public static FlightRoom getUserRoom(final Context context){
-        if (instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    FlightRoom.class,
-                    "UserDB")
-                    .allowMainThreadQueries()
-                    .build();
-        }
-        return instance;
-    }
-
     public void loadData(Context context){
 
         // if flight table is empty, then load data for  flights
-
-        //  TODO  do similar for users
 
         List<Flight> flight_list = FlightRoom.getFlightRoom(context).dao().getAllFlights();
         if (flight_list.size() == 0) {
             Log.d("FlightRoom", "loading data flights ");
             loadFlights(context);
         }
-
-        List<User> user_list = FlightRoom.getFlightRoom(context).dao().getAllUsers();
-        if (user_list.size() == 0){
-            Log.d("FlightRoom", "loading data Users ");
-
-        }
-
     }
+
+    private void loadUsers(Context context) {
+        FlightDao dao = getFlightRoom(context).dao();
+
+        User alice = new User("A@lice5", "@cSit100");
+        User derek = new User("$BriAn7","123aBc##");
+        User ashley = new User("!chriS12!", "CHrIS12!!");
+        dao.addUser(alice);
+        dao.addUser(derek);
+        dao.addUser(ashley);
+        Log.d("FlightRoom", "3 users added to database");
+    }
+
 
     private void loadFlights(Context context){
         FlightDao dao = getFlightRoom(context).dao();

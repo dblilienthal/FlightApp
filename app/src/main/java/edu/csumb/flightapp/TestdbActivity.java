@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import edu.csumb.flightapp.model.Flight;
 import edu.csumb.flightapp.model.FlightDao;
 import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.LogRecord;
+import edu.csumb.flightapp.model.Reservation;
 import edu.csumb.flightapp.model.User;
 
 
@@ -51,23 +53,27 @@ public class TestdbActivity extends AppCompatActivity {
 
         // TODO  uncomment and complete the following test code
 
-        // create and retrieve a Reservation
-        // Reservation user = new Reservation(...);
-        // dao.addReservation(reservation);
-        // List<Reservation> reserves = dao.getAllReservations();
-        // if (reserves.size() >= 1) findViewById(R.id.reserve_testdb).setTextColor(Color.GREEN);
+         //create and retrieve a Reservation
+         Reservation res = new Reservation();
+         dao.addReservation(res);
+         List<Reservation> reserves = dao.getAllReservations();
+         TextView reserve_testdb = findViewById(R.id.reserve_testdb);
+         if (reserves.size() >= 1) reserve_testdb.setTextColor(Color.GREEN);
 
         // list users
-         User user = new User("Meow", "test");
-         dao.addUser(user);
-         List<User> users = dao.getAllUsers();
-         if (users.size() >= 1) findViewById(R.id.users_testdb).setTextColor(Color.GREEN);
+         User users = new User("Meow", "test");
+         dao.addUser(users);
+         List<User> userss = dao.getAllUsers();
+         TextView users_testdb = findViewById(R.id.users_testdb);
+         if (userss.size() >= 1) users_testdb.setTextColor(Color.GREEN);
+
 
         // create and retrieve LogRecord
-        // LogRecord record = new LogRecord(...);
-        // dao.addLogRecord(record);
-        // List<LogRecord> records  = dao.getAllLogRecords();
-        // if (records.size() >= 1) findViewById(R.id.logrec_testdb).setTextColor(Color.GREEN);
+         LogRecord record = new LogRecord();
+         dao.addLogRecord(record);
+         List<LogRecord> records  = dao.getAllLogRecords();
+         TextView Logrec_testdb = findViewById(R.id.logrec_testdb);
+         if (records.size() >= 1) Logrec_testdb.setTextColor(Color.GREEN);
 
 
     }
