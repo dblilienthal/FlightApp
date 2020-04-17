@@ -1,8 +1,15 @@
 package edu.csumb.flightapp.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.time.LocalTime;
+
+import static java.time.LocalTime.now;
 
 @Entity
 public class LogRecord {
@@ -26,12 +33,13 @@ public class LogRecord {
     private String departureTime;
     private int numberOfTickets;
     private String transactionType;
-    //private long time; //Time of the Logging
+    private String time; //Time of the Logging
 
     public LogRecord(){}
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Ignore
-    public LogRecord(String customerUsername, int reservationNumber, int flightNumber, String departure, String arrival, String departureTime, int numberOfTickets, String transactionType){
+    public LogRecord(String customerUsername, int reservationNumber, int flightNumber, String departure, String arrival, String departureTime, int numberOfTickets, String transactionType, String time ){
         this.customerUsername = customerUsername;
         this.reservationNumber = reservationNumber;
         this.flightNumber = flightNumber;
@@ -40,10 +48,12 @@ public class LogRecord {
         this.departureTime = departureTime;
         this.numberOfTickets = numberOfTickets;
         this.transactionType = transactionType;
-        //this.time = datetime.getTime();
+        this.time = now().toString();
     }
 
-    // Default Constructor
+    public String getTime() { return time; }
+
+    public void setTime(String time) { this.time = time; }
 
     public int getId() {
         return id;
