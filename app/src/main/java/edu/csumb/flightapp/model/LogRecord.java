@@ -19,121 +19,86 @@ public class LogRecord {
     (=cancellation or = Reserve Seat), and current date/time.
      */
 
-    public static final String TYPE_CANCELLATION = "cancellation";
-    public static final String TYPE_RESERVE_SEAT = "reserve_seat";
+    public static final int LOG_TYPE_CANCEL = 1;
+    public static final int LOG_TYPE_RESERVE = 2;
+    public static final int LOG_TYPE_NEWUSER = 3;
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
-
-    private String customerUsername;
-    private int reservationNumber;
-    private int flightNumber;
-    private String departure;
-    private String arrival;
-    private String departureTime;
-    private int numberOfTickets;
-    private String transactionType;
-    private String time; //Time of the Logging
+    private long id;
+    private long time; // unix time
+    private int type;
+    private String username;
+    private String msg;
 
     public LogRecord(){}
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Ignore
-    public LogRecord(String customerUsername, int reservationNumber, int flightNumber, String departure, String arrival, String departureTime, int numberOfTickets, String transactionType, String time ){
-        this.customerUsername = customerUsername;
-        this.reservationNumber = reservationNumber;
-        this.flightNumber = flightNumber;
-        this.departure = departure;
-        this.arrival = arrival;
-        this.departureTime = departureTime;
-        this.numberOfTickets = numberOfTickets;
-        this.transactionType = transactionType;
-        this.time = now().toString();
+    public LogRecord(int type, String username, String msg) {
+        this.type = type;
+        this.username = username;
+        this.time = System.currentTimeMillis();
+        this.msg = msg;
     }
 
-    public String getTime() { return time; }
-
-    public void setTime(String time) { this.time = time; }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getCustomerUsername() {
-        return customerUsername;
-    }
-
-    public void setCustomerUsername(String customerUsername) {
-        this.customerUsername = customerUsername;
-    }
-
-    public int getReservationNumber() {
-        return reservationNumber;
-    }
-
-    public void setReservationNumber(int reservationNumber) {
-        this.reservationNumber = reservationNumber;
-    }
-
-    public int getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(int flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public String getDeparture() {
-        return departure;
-    }
-
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
-
-    public String getArrival() {
-        return arrival;
-    }
-
-    public void setArrival(String arrival) {
-        this.arrival = arrival;
-    }
-
-    public String getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(String departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public int getNumberOfTickets() {
-        return numberOfTickets;
-    }
-
-    public void setNumberOfTickets(int numberOfTickets) {
-        this.numberOfTickets = numberOfTickets;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-/*
-    public java.util.Date getTime() {
-        return new java.util.Date(time);
+    public long getTime() {
+        return time;
     }
 
     public void setTime(long time) {
         this.time = time;
     }
-    */
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    private String typeString() {
+        switch (type) {
+            case 1: return "CANCEL";
+            case 2: return "RESERVE";
+            case 3: return "NEW_USER";
+            default: return "INVALID";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LogRecord{" +
+                "id=" + id +
+                ", time=" + new java.util.Date(time).toString() +
+                ", type=" + typeString() +
+                ", username='" + username + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 
 }

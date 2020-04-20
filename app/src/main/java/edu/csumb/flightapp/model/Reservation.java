@@ -96,4 +96,18 @@ public class Reservation {
     public void setTickets(int tickets) {
         this.tickets = tickets;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", flightNo='" + flightNo + '\'' +
+                ", departure='" + departure + '\'' +
+                ", arrival='" + arrival + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", totalPrice=" + total +
+                ", numberTickets=" + tickets +
+                '}';
+    }
 }

@@ -5,9 +5,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.List;
+
+import edu.csumb.flightapp.model.FlightDao;
+import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.User;
 
 public class CreateAccountActivity  extends AppCompatActivity {
 
@@ -46,8 +53,28 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 String username = findViewById(R.id.username).toString();
                 String password = findViewById(R.id.password).toString();
 
+                // Check to see if the username is the administrator
+                if (username.equals("!admiM2")) {
+                    TextView msg = findViewById(R.id.message);
+                    msg.setText("Username not available.");
+                    Log.d(CREATE_ACCOUNT_ACTIVITY, "Administrator Account already exists");
+                    return;
+                }
+
                 // Checks the input constraints
                 if (checkInput(username) && checkInput(password)){
+
+                    //Check to see if the user exists
+
+                    User user = (User) FlightRoom.getFlightRoom(CreateAccountActivity.this).dao().getUserByUsername(username);
+                    // If the user does not exist. create a new user.
+                    if (user == null){
+                        FlightDao dao = FlightRoom.getFlightRoom(CreateAccountActivity.this).dao();
+                        User newUser = new User(username, password);
+                        dao.addUser(newUser);
+                    }
+
+
 
                 }
 
@@ -76,7 +103,7 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 for (char c : alphabetUpperArray) {
                     if (value == c) {
                         containsUpperAlphabet = true;
-                        System.out.println("containsUpperAlphabet = true;");
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "containsUpperAlphabet = true;");
                         break;
                     }
                 }
@@ -85,7 +112,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 for (char c : alphabetLowerArray) {
                     if (value == c) {
                         containsLowerAlphabet = true;
-                        System.out.println("containsLowerAlphabet = true;");
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "containsLowerAlphabet = true;");
+                        break;
                     }
                 }
             }
@@ -93,7 +121,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 for (char c : acceptedNumberArray) {
                     if (value == c) {
                         containsNumbers = true;
-                        System.out.println("containsNumbers = true;");
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "containsNumbers = true;");
+                        break;
                     }
                 }
             }
@@ -101,7 +130,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 for (char c : acceptedCharactersArray) {
                     if (value == c) {
                         containsCharacters = true;
-                        System.out.println("containsCharacters = true;");
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "containsCharacters = true;");
+                        break;
                     }
                 }
             }

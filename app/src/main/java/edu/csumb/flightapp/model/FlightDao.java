@@ -3,15 +3,10 @@ package edu.csumb.flightapp.model;
 import java.util.List;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
-
-//TODO update this class to include
-//   query method to read LogRecords
-//      use the annotation @Query("select * from LogRecord order by datetime desc")
-//   insert method to insert new LogRecord into database
 
 @Dao
 public interface FlightDao {
@@ -30,33 +25,30 @@ public interface FlightDao {
     @Update
     int updateFlight(Flight flight);
 
-    // TODO -- remove comments on following
-
-
     @Query("select * from User")
     List<User> getAllUsers();
 
     @Query("select * from User where username = :username")
     List<User> getUserByUsername(String username);
 
-    //Get all the Reservations
-    @Query("select * from Reservation")
-    List<Reservation> getAllReservations();
-
-    //Get all Log Records
-    @Query("select * from LogRecord")
-    List<LogRecord> getAllLogRecords();
-
     @Insert
     void addUser(User user);
 
-    //Add a reservation
+    @Query("select * from LogRecord order by time desc")
+    List<LogRecord> getLogRecordOrderByTimeDesc();
+
     @Insert
-    long addReservation(Reservation res);
+    long addLogRecord(LogRecord logRecord);
 
-    //Add a log record
     @Insert
-    long addLogRecord(LogRecord rec);
+    long addReservation(Reservation reservation);
 
+    @Delete
+    int deleteReservation(Reservation reservation);
 
+    @Query("select * from Reservation where username = :username")
+    List<Reservation> getReservationsByUsername(String username);
+
+    @Query("select * from Reservation")
+    List<Reservation> getAllReservations();
 }
