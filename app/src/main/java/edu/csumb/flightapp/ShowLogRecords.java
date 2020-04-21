@@ -29,11 +29,11 @@ public class ShowLogRecords extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(SHOWLOGRECORDS, "onCreate called");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_show_log_records);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button return_main_button = findViewById(R.id.return_button_log);
+        Button return_main_button = findViewById(R.id.return_button_home);
         return_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

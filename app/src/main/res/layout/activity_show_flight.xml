@@ -27,7 +27,7 @@
     </ListView>
 
     <Button
-        android:id="@+id/return_button_log"
+        android:id="@+id/return_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

@@ -59,12 +59,12 @@ public class AddFlightActivity extends AppCompatActivity {
                     flag = false;
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddFlightActivity.this);
                     builder.setTitle("Flight already exists or you didn't fill out the form correctly.");
-                    builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(AddFlightActivity.this, MainActivity.class);
+                            /*Intent intent = new Intent(AddFlightActivity.this, MainActivity.class);
                             finish();
-                            startActivity(intent);
+                            startActivity(intent);*/
                         }
                     });
 
@@ -90,9 +90,6 @@ public class AddFlightActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
-
-                    // The strings are all full
-
             }
         });
 

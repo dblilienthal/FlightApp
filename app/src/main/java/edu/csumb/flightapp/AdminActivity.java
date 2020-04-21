@@ -32,6 +32,17 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
+        // button to add a flights
+        Button add_flight_button = findViewById(R.id.add_flights);
+        add_flight_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d( ADMIN_ACTIVITY, "onClick show flights called");
+                Intent intent = new Intent(AdminActivity.this, AddFlightActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // button to show all logs
         Button log_button = findViewById(R.id.show_log);
         log_button.setOnClickListener(new View.OnClickListener() {
