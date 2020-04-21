@@ -17,6 +17,10 @@ public interface FlightDao {
     @Query("select * from Flight where departure=:departure and arrival=:arrival")
     List<Flight> searchFlight(String departure, String arrival);
 
+    // Find a flight by the flight number
+    @Query("select * from Flight where flightNo=:no")
+    Flight getFlightByFlightNo(String no);
+
     // the generated id value is returned
     @Insert
     long addFlight(Flight flight);
@@ -29,7 +33,7 @@ public interface FlightDao {
     List<User> getAllUsers();
 
     @Query("select * from User where username = :username")
-    List<User> getUserByUsername(String username);
+    User getUserByUsername(String username);
 
     @Insert
     void addUser(User user);

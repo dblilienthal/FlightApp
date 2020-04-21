@@ -71,7 +71,7 @@ public class TestdbActivity extends AppCompatActivity {
         // create and retrieve LogRecord
          LogRecord record = new LogRecord();
          dao.addLogRecord(record);
-         List<LogRecord> records  = dao.getAllLogRecords();
+         List<LogRecord> records  = dao.getLogRecordOrderByTimeDesc();
          TextView Logrec_testdb = findViewById(R.id.logrec_testdb);
          if (records.size() >= 1) Logrec_testdb.setTextColor(Color.GREEN);
 

@@ -22,8 +22,8 @@ public class AdminLogin extends AppCompatActivity {
         Log.d(ADMIN_LOGIN_ACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         Button login_button = findViewById(R.id.admin_login_button);
         login_button.setOnClickListener(new View.OnClickListener() {
@@ -34,20 +34,33 @@ public class AdminLogin extends AppCompatActivity {
                 EditText username = findViewById(R.id.adminUsername);
                 EditText password = findViewById(R.id.adminPassword);
 
-                tryagain:
+                Log.d(ADMIN_LOGIN_ACTIVITY, "username: "+username.getText().toString()+" Password: "+password.getText().toString());
+
+                //tryagain:
                 if (attempts != 2){
 
                     if (username.getText().toString().equals("!admiM2") && password.getText().toString().equals("!admiM2")) {
                         Log.d(ADMIN_LOGIN_ACTIVITY, "Successful Admin Login");
-                        // special admin userid
                         Intent intent = new Intent(AdminLogin.this, AdminActivity.class);
                         startActivity(intent);
                     } else {
+                        Log.d(ADMIN_LOGIN_ACTIVITY, "Invalid Attempt");
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AdminLogin.this);
+                        builder.setTitle("Incorrect Username or Password.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //finish();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
                         attempts++;
-                        break tryagain;
+                        return;
                     }
                 } else {
                     // If there has been two attempts
+                    Log.d(ADMIN_LOGIN_ACTIVITY, "There has been two unsuccessful attempts");
                     android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AdminLogin.this);
                     builder.setTitle("Too many fails. Please try again.");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

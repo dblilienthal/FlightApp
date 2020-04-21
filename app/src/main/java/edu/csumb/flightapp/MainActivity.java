@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         // button for Create Account Activity.
         Button create_account_button = findViewById(R.id.create_account);
-
         create_account_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -50,8 +49,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // TODO  for development use.  Should be deleted
+        // Button for administrator
+        Button create_administrator_button = findViewById(R.id.manage_system);
+        create_administrator_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(MAINACTIVITY, "onClick admin button called");
+                Intent intent = new Intent(MainActivity.this, AdminLogin.class);
+                startActivity(intent);
+            }
+        });
 
+
+        // TODO  for development use.  Should be deleted
+/*
         // button to show all flights
         Button flight_button = findViewById(R.id.show_flights);
         flight_button.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +86,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
+        Button manage_system_button = findViewById(R.id.manage_system);
+        manage_system_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(MAINACTIVITY, "onClick  manage_system called");
+                Intent intent = new Intent(MainActivity.this, CreateLogRecords.class);
+                startActivity(intent);
+            }
+        });
+*/
     }
 
     @Override

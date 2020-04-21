@@ -1,19 +1,23 @@
 package edu.csumb.flightapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.List;
+import java.util.Date;
 
 import edu.csumb.flightapp.model.FlightDao;
 import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.LogRecord;
 import edu.csumb.flightapp.model.User;
 
 public class CreateAccountActivity  extends AppCompatActivity {
@@ -28,6 +32,7 @@ public class CreateAccountActivity  extends AppCompatActivity {
     private static char[] alphabetLowerArray = alphabetLower.toCharArray();
     private static char[] acceptedNumberArray = acceptedNumbers.toCharArray();
     private static char[] acceptedCharactersArray = acceptedCharacters.toCharArray();
+    private int attempts = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class CreateAccountActivity  extends AppCompatActivity {
 
         Button create_button = findViewById(R.id.create_account_button);
         create_button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -48,48 +54,117 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 //   one special char, one uppercase and one lowercase letters, one digit
                 //   display error message using dialog
 
-                //EditText usernameInput = findViewById(R.id.username);
-                //EditText passwordInput = findViewById(R.id.password);
-                String username = findViewById(R.id.username).toString();
-                String password = findViewById(R.id.password).toString();
+                EditText username = findViewById(R.id.username);
+                EditText password = findViewById(R.id.password);
 
-                // Check to see if the username is the administrator
-                if (username.equals("!admiM2")) {
-                    TextView msg = findViewById(R.id.message);
-                    msg.setText("Username not available.");
-                    Log.d(CREATE_ACCOUNT_ACTIVITY, "Administrator Account already exists");
-                    return;
-                }
-
-                // Checks the input constraints
-                if (checkInput(username) && checkInput(password)){
-
-                    //Check to see if the user exists
-
-                    User user = (User) FlightRoom.getFlightRoom(CreateAccountActivity.this).dao().getUserByUsername(username);
-                    // If the user does not exist. create a new user.
-                    if (user == null){
-                        FlightDao dao = FlightRoom.getFlightRoom(CreateAccountActivity.this).dao();
-                        User newUser = new User(username, password);
-                        dao.addUser(newUser);
+                tryagain:
+                if (attempts != 2){
+                    // Check to see if the username is the administrator
+                    if (username.getText().toString().equals("!admiM2")) {
+                        //TextView msg = findViewById(R.id.message);
+                        //msg.setText("Username not available.");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                        builder.setTitle("Username not available.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "Administrator Account already exists");
+                        attempts++;
+                        break tryagain;
+                        //return;
                     }
 
+                    // Checks the input constraints
+                    if (checkInput(username.getText().toString()) && checkInput(password.getText().toString())){
 
+                        //Check to see if the user exists
 
+                        User user = FlightRoom.getFlightRoom(CreateAccountActivity.this).dao().getUserByUsername(username.getText().toString());
+                        // If the user does not exist. create a new user.
+                        if (user == null){
+                            FlightDao dao = FlightRoom.getFlightRoom(CreateAccountActivity.this).dao();
+                            User newUser = new User(username.getText().toString(), password.getText().toString());
+                            dao.addUser(newUser);
+                            Log.d(CREATE_ACCOUNT_ACTIVITY, "User has been successfully created.");
+
+                            //Add this to the log record
+                            Date now = new Date();
+                            LogRecord rec = new LogRecord(3, username.getText().toString(), "");
+                            dao.addLogRecord(rec);
+
+                            // Create a popup button for the user to click
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                            builder.setTitle("Account successfully created.");
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        } else {
+                            // If the username already exists
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                            builder.setTitle("Username Already Exists Try Again");
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            });
+                            Log.d(CREATE_ACCOUNT_ACTIVITY, "Unsuccessful Attempt At Creating An Account");
+                            attempts++;
+                            break tryagain;
+                        }
+                    } else {
+                        // Username or Password did not meet the requirements
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                        builder.setTitle("Username or Password did not meet the requirements. Please try again.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                        Log.d(CREATE_ACCOUNT_ACTIVITY, "Unsuccessful Attempt At Creating An Account");
+                        attempts++;
+                        break tryagain;
+                    }
+                } else {
+                    // If there has been two attempts
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                    builder.setTitle("Too many fails. Please try again.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
+
 
                 // TODO create new User Object and add to database.
 
                 // TODO  write a record to Log table with message that new Account has been created.
                 //  include username (but not password) in the message.
 
-                finish();
+                //finish();
+
+
 
             }
         });
     }
 
-    private static boolean checkInput(String input){
+    private boolean checkInput(String input){
 
         char[] inputArray = input.toCharArray();
 
@@ -136,10 +211,24 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 }
             }
             if (containsUpperAlphabet && containsLowerAlphabet && containsNumbers && containsCharacters) {
+                Log.d(CREATE_ACCOUNT_ACTIVITY, "Username and Password are valid");
                 return true;
             }
         }
+        Log.d(CREATE_ACCOUNT_ACTIVITY, "Username and Password are NOT valid");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+        builder.setTitle("Password or Username is not valid.");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //finish();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
         return false;
     }
-
 }

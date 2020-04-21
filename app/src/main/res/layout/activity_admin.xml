@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AdminActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/adminToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -27,16 +27,7 @@
         android:scaleX="2"
         android:scaleY="2"
         android:gravity="center"
-        android:text="Main Menu"/>
-
-
-    <Button
-        android:id="@+id/create_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Create Account" />
-
+        android:text="Admin View"/>
 
     <Button
         android:id="@+id/show_flights"
@@ -45,31 +36,17 @@
         android:gravity="center_horizontal"
         android:text="Show Flights (dev only)" />
 
-
     <Button
-        android:id="@+id/test_db"
+        android:id="@+id/add_flights"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Test DB (Development Only)" />
+        android:text="Add Flights" />
 
     <Button
-        android:id="@+id/reserve_seat"
+        android:id="@+id/show_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reserve Seat" />
-
-    <Button
-        android:id="@+id/cancel_reservation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel Reservation" />
-
-    <Button
-        android:id="@+id/manage_system"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Manage System" />
-
+        android:text="Show Log" />
 
 </LinearLayout>

@@ -21,7 +21,7 @@ public class LogRecord {
 
     public static final int LOG_TYPE_CANCEL = 1;
     public static final int LOG_TYPE_RESERVE = 2;
-    public static final int LOG_TYPE_NEWUSER = 3;
+    public static final int LOG_TYPE_NEW_USER = 3;
 
     @PrimaryKey(autoGenerate = true)
     private long id;

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,53 +21,32 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:gravity="center"
-        android:text="Main Menu"/>
+        android:layout_height="80dp"
+        android:id="@+id/message" />
 
-
-    <Button
-        android:id="@+id/create_account"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Create Account" />
+        android:text="@string/user_name"/>
 
-
-    <Button
-        android:id="@+id/show_flights"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Show Flights (dev only)" />
+        android:id="@+id/adminUsername"/>
 
-
-    <Button
-        android:id="@+id/test_db"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Test DB (Development Only)" />
+        android:text="password" />
 
-    <Button
-        android:id="@+id/reserve_seat"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reserve Seat" />
+        android:id="@+id/adminPassword"/>
 
     <Button
-        android:id="@+id/cancel_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancel Reservation" />
-
-    <Button
-        android:id="@+id/manage_system"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Manage System" />
-
-
+        android:text="@string/login"
+        android:id="@+id/admin_login_button"/>
 </LinearLayout>
