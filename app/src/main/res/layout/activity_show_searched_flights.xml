@@ -20,17 +20,17 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ListView
-        android:id="@+id/log_list"
+        android:id="@+id/searched_flight_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
     </ListView>
 
     <Button
-        android:id="@+id/return_button_home"
+        android:id="@+id/return_button_searched_flights"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Back" />
+        android:text="Return to Main Menu" />
 
 </LinearLayout>

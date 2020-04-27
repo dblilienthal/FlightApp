@@ -37,39 +37,39 @@
         android:gravity="center_horizontal"
         android:text="Create Account" />
 
-
-    <Button
-        android:id="@+id/show_flights"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Show Flights (dev only)" />
-
-
-    <Button
-        android:id="@+id/test_db"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Test DB (Development Only)" />
-
-    <Button
-        android:id="@+id/reserve_seat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reserve Seat" />
-
-    <Button
-        android:id="@+id/cancel_reservation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel Reservation" />
-
-    <Button
-        android:id="@+id/manage_system"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Manage System" />
+    <!--
+        <Button
+            android:id="@+id/show_flights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Show Flights (dev only)" />
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/test_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Test DB (Development Only)" />
+    -->
+        <Button
+            android:id="@+id/reserve_seat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reserve Seat" />
+
+        <Button
+            android:id="@+id/cancel_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Reservation" />
+
+        <Button
+            android:id="@+id/manage_system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manage System" />
+
+
+    </LinearLayout>

@@ -81,6 +81,7 @@ public class AddFlightActivity extends AppCompatActivity {
                     builder.setPositiveButton("Confirm.", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             Intent intent = new Intent(AddFlightActivity.this, MainActivity.class);
                             finish();
                             startActivity(intent);

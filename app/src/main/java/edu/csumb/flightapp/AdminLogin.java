@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,23 +42,24 @@ public class AdminLogin extends AppCompatActivity {
 
                     if (username.getText().toString().equals("!admiM2") && password.getText().toString().equals("!admiM2")) {
                         Log.d(ADMIN_LOGIN_ACTIVITY, "Successful Admin Login");
-                        Intent intent = new Intent(AdminLogin.this, AdminActivity.class);
+                        Intent intent = new Intent(AdminLogin.this, ShowLogRecords.class);
                         startActivity(intent);
-                    } else {
-                        Log.d(ADMIN_LOGIN_ACTIVITY, "Invalid Attempt");
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AdminLogin.this);
-                        builder.setTitle("Incorrect Username or Password.");
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //finish();
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        attempts++;
-                        return;
                     }
+                    Log.d(ADMIN_LOGIN_ACTIVITY, "Invalid Attempt");
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AdminLogin.this);
+                    builder.setTitle("Invalid Attempt.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+                    //TextView msg = findViewById(R.id.admin_message);
+                    //msg.setText("Username not available.");
+                    attempts++;
+                    return;
+
                 } else {
                     // If there has been two attempts
                     Log.d(ADMIN_LOGIN_ACTIVITY, "There has been two unsuccessful attempts");

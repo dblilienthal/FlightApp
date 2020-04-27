@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/adminToolbar"
+            android:id="@+id/GoToFlightToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -27,32 +27,21 @@
         android:gravity="center"
         android:scaleX="2"
         android:scaleY="2"
-        android:text="Admin View" />
+        android:text="Did you want to create a flight?" />
 
     <Button
-        android:id="@+id/show_flights"
+        android:id="@+id/yes_flight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Show Flights (dev only)" />
+        android:text="Yes" />
 
     <Button
-        android:id="@+id/add_flights"
+        android:id="@+id/no_flight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Add Flights" />
+        android:text="No" />
 
-    <Button
-        android:id="@+id/show_log"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show Log" />
-
-    <Button
-        android:id="@+id/return_button_home_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Return Home" />
 
 </LinearLayout>

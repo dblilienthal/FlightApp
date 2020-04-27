@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,8 +58,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                 EditText username = findViewById(R.id.username);
                 EditText password = findViewById(R.id.password);
 
-                tryagain:
-                if (attempts != 2){
+                //tryagain:
+                if (attempts != 1){
                     // Check to see if the username is the administrator
                     if (username.getText().toString().equals("!admiM2")) {
                         //TextView msg = findViewById(R.id.message);
@@ -73,7 +74,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                         });
                         Log.d(CREATE_ACCOUNT_ACTIVITY, "Administrator Account already exists");
                         attempts++;
-                        break tryagain;
+                        return;
+                        //break tryagain;
                         //return;
                     }
 
@@ -107,20 +109,21 @@ public class CreateAccountActivity  extends AppCompatActivity {
 
                             AlertDialog dialog = builder.create();
                             dialog.show();
-                        } else {
-                            // If the username already exists
-                            AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
-                            builder.setTitle("Username Already Exists Try Again");
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                }
-                            });
-                            Log.d(CREATE_ACCOUNT_ACTIVITY, "Unsuccessful Attempt At Creating An Account");
-                            attempts++;
-                            break tryagain;
                         }
+                        // If the username already exists
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CreateAccountActivity.this);
+                        builder.setTitle("Username already exists.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { finish();
+                            }
+                        });Log.d(CREATE_ACCOUNT_ACTIVITY, "Username Exists");
+                        TextView msg = findViewById(R.id.message);
+                        msg.setText("Username not available.");
+                        attempts++;
+                        return;
+                        //break tryagain;
+
                     } else {
                         // Username or Password did not meet the requirements
                         AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
@@ -133,7 +136,8 @@ public class CreateAccountActivity  extends AppCompatActivity {
                         });
                         Log.d(CREATE_ACCOUNT_ACTIVITY, "Unsuccessful Attempt At Creating An Account");
                         attempts++;
-                        break tryagain;
+                        return;
+                        //break tryagain;
                     }
                 } else {
                     // If there has been two attempts

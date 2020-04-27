@@ -1,6 +1,7 @@
 package edu.csumb.flightapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +39,8 @@ public class ShowLogRecords extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(SHOWLOGRECORDS, "onClick return called");
-                finish();
+                Intent intent = new Intent(ShowLogRecords.this, GoToFlightActivity.class);
+                startActivity(intent);
             }
         });
 
