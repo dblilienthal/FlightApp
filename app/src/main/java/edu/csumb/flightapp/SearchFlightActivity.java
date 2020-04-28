@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.csumb.flightapp.model.Flight;
+import edu.csumb.flightapp.model.FlightDao;
 import edu.csumb.flightapp.model.FlightRoom;
 
 public class SearchFlightActivity extends Activity {
@@ -74,7 +75,7 @@ public class SearchFlightActivity extends Activity {
                     Intent intent = new Intent(SearchFlightActivity.this, ShowSearchedFlightsActivity.class);
                     startActivity(intent);
                 }
-
+/*
                 AlertDialog.Builder builder = new AlertDialog.Builder(SearchFlightActivity.this);
                 builder.setTitle("No Flights Found");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -86,6 +87,7 @@ public class SearchFlightActivity extends Activity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                */
             }
         });
     }

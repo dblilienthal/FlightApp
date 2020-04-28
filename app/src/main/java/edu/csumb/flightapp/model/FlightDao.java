@@ -59,6 +59,10 @@ public interface FlightDao {
     @Query("select * from Reservation where username = :username")
     List<Reservation> getReservationsByUsername(String username);
 
+    @Query("select * from Reservation where username = :username and flightNo = :flight")
+    List<Reservation> getReservationsByUsernameAndFlightNo(String username, String flight);
+
+
     @Query("select * from Reservation")
     List<Reservation> getAllReservations();
 }

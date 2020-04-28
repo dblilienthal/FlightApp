@@ -85,7 +85,6 @@ public class UserAuthenticatedBookFlightActivity extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 
     public class FlightListAdapter extends ArrayAdapter<Flight> {
@@ -105,5 +104,4 @@ public class UserAuthenticatedBookFlightActivity extends Activity {
             return rowView;
         }
     }
-
 }

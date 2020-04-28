@@ -71,6 +71,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Button for Canceling Reservation
+        Button cancel_reservation_button = findViewById(R.id.cancel_reservation);
+        cancel_reservation_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(MAINACTIVITY, "onClick admin button called");
+                Intent intent = new Intent(MainActivity.this, CancelReservationLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         // TODO  for development use.  Should be deleted
 /*

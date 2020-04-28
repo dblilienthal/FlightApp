@@ -67,6 +67,8 @@ public abstract class FlightRoom extends RoomDatabase {
         dao.addFlight(otter205);
         Flight otter202 = new Flight("Otter202", "Seattle", "Monterey", "2:10(pm)", 5, 200.50);
         dao.addFlight(otter202);
+        Flight otter301 = new Flight("Otter301", "Los Angeles", "Seattle", "12:00(PM)", 10, 350.50);
+        dao.addFlight(otter301);
         Log.d("FlightRoom", "5 flights added to database");
 
 

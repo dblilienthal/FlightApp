@@ -55,7 +55,10 @@ public class AddFlightActivity extends AppCompatActivity {
 
                 //Check to see if any of the strings are empty
                 boolean flag = true;
-                if (flightNo1.isEmpty() || from1.isEmpty() || to1.isEmpty() || time1.isEmpty() || capacity.getText().toString().isEmpty() || price.getText().toString().isEmpty()) {
+
+                Flight flight = FlightRoom.getFlightRoom(AddFlightActivity.this).dao().getFlightByFlightNo(flightNo.getText().toString());
+
+                if (flightNo1.isEmpty() || from1.isEmpty() || to1.isEmpty() || time1.isEmpty() || capacity.getText().toString().isEmpty() || price.getText().toString().isEmpty() || flight.getFlightNo() != null) {
                     flag = false;
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddFlightActivity.this);
                     builder.setTitle("Flight already exists or you didn't fill out the form correctly.");
@@ -74,7 +77,9 @@ public class AddFlightActivity extends AppCompatActivity {
 
                 if(dao.getFlightByFlightNo(flightNo1)==null && flag) {
                     Flight addFlight = new Flight(flightNo1, from1, to1, time1, capacity1, price1);
-                    addFlight.setId((int) dao.addFlight(addFlight));
+                    //addFlight.setId((int) dao.addFlight(addFlight));
+
+                    dao.addFlight(addFlight);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddFlightActivity.this);
                     builder.setTitle("Flight added.");
