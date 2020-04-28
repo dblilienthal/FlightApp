@@ -17,6 +17,9 @@ public interface FlightDao {
     @Query("select * from Flight where departure=:departure and arrival=:arrival")
     List<Flight> searchFlight(String departure, String arrival);
 
+    @Query("select * from Flight where departure=:departure and arrival=:arrival and availableSeats > :seats")
+    List<Flight> searchFlightWithTickets(String departure, String arrival, int seats);
+
     // Find a flight by the flight number
     @Query("select * from Flight where flightNo=:no")
     Flight getFlightByFlightNo(String no);
@@ -34,6 +37,9 @@ public interface FlightDao {
 
     @Query("select * from User where username = :username")
     User getUserByUsername(String username);
+
+    @Query("select * from User where username = :username and password = :password")
+    User searchForUser(String username, String password);
 
     @Insert
     void addUser(User user);

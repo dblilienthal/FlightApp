@@ -1,6 +1,7 @@
 package edu.csumb.flightapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,17 @@ public class ShowFlightActivity extends AppCompatActivity {
 
         ListView flights_view = findViewById(R.id.flight_list);
         flights_view.setAdapter( new FlightListAdapter( this, flights) );
+
+        // Button to return back
+        Button create_administrator_button = findViewById(R.id.manage_system);
+        create_administrator_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(SHOWFLIGHT_ACTIVITY, "onClick admin button called");
+                Intent intent = new Intent(ShowFlightActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public class FlightListAdapter extends ArrayAdapter<Flight> {
@@ -59,12 +71,6 @@ public class ShowFlightActivity extends AppCompatActivity {
         public FlightListAdapter (Activity context, List<Flight> flights){
             super(context, R.layout.row_layout , flights);
         }
-
-        /*
-           given an index into the flights array - position
-           create a rowView and set TextView contained in the row
-           to the flight data.
-         */
         @Override
         public View getView(int position, View view, ViewGroup parent) {
 
@@ -76,6 +82,5 @@ public class ShowFlightActivity extends AppCompatActivity {
             rowField.setText(flights.get(position).toString());
             return rowView;
         }
-
     }
 }

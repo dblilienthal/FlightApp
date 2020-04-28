@@ -20,24 +20,29 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ListView
-        android:id="@+id/searched_flight_list"
+        android:id="@+id/authenticated_searched_flight_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
     </ListView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Book By Flight Number:" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/authenticated_book_flight_field" />
+
     <Button
-        android:id="@+id/book_flight_unauthenticated"
+        android:id="@+id/authenticated_book_flight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Book Flight" />
 
-    <Button
-        android:id="@+id/return_button_searched_flights"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Back" />
 
 </LinearLayout>

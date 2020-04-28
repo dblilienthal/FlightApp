@@ -22,7 +22,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:id="@+id/message" />
+        android:textSize="50dp"
+        android:text="Please Login"
+        android:id="@+id/login_message" />
 
     <TextView
         android:layout_width="match_parent"
@@ -32,7 +34,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username" />
+        android:id="@+id/user_username" />
 
     <TextView
         android:layout_width="match_parent"
@@ -42,12 +44,17 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password" />
+        android:id="@+id/user_password" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:id="@+id/login_button" />
+        android:id="@+id/user_login_button" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/user_message" />
 
 </LinearLayout>

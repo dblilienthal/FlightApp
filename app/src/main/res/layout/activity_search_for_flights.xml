@@ -48,6 +48,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/arrivalField"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Enter Tickets" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ticketField"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +68,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="Search For Flights"
+        android:text=""
         android:textSize="25dp"
         android:id="@+id/search_flight_error_field" />
 </LinearLayout>

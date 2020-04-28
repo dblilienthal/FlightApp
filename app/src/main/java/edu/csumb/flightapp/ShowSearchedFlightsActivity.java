@@ -23,36 +23,37 @@ public class ShowSearchedFlightsActivity extends Activity {
 
     List<Flight> flights;
 
+    private static final String ShowSearchedFlights = "ShowSearchedFlights";
 
     protected void onCreate(Bundle savedInstanceState) {
-        //Log.d(SearchFlightActivity, "onCreate called");
+        Log.d(ShowSearchedFlights, "onCreate called");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_for_flights);
+        setContentView(R.layout.activity_show_searched_flights);
 
-        //Button for searching for flights
-        Button yes_flight = findViewById(R.id.yes_flight);
-        yes_flight.setOnClickListener(new View.OnClickListener() {
+        flights = FlightRoom.getFlightRoom(ShowSearchedFlightsActivity.this).dao().searchFlight(SearchFlightActivity.getFlightDeparture().getText().toString(), SearchFlightActivity.getFlightArrival().getText().toString());
+        //Log.d(SHOWFLIGHT_ACTIVITY, "flights count "+flights.size());
+
+        ListView flights_view = findViewById(R.id.searched_flight_list);
+        flights_view.setAdapter( new FlightListAdapter( this, flights) );
+
+        // This button will go to the user login screen
+        Button book_flight_button = findViewById(R.id.book_flight_unauthenticated);
+        book_flight_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //Log.d(SearchFlightActivity, "onClick called");
-
-
-                flights = FlightRoom.getFlightRoom(ShowSearchedFlightsActivity.this).dao().searchFlight(SearchFlightActivity.getFlightDeparture().getText().toString(), SearchFlightActivity.getFlightArrival().getText().toString());
-                //Log.d(SHOWFLIGHT_ACTIVITY, "flights count "+flights.size());
-
-                ListView flights_view = findViewById(R.id.searched_flight_list);
-                flights_view.setAdapter( new FlightListAdapter( this, flights) );
-
+                Log.d(ShowSearchedFlights, "Book flight button called");
+                Intent intent = new Intent(ShowSearchedFlightsActivity.this, UserLoginActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
     public class FlightListAdapter extends ArrayAdapter<Flight> {
 
-        public FlightListAdapter (View.OnClickListener context, List<Flight> flights){
-            super((Context) context, R.layout.row_layout , flights);
+        public FlightListAdapter (Activity context, List<Flight> flights){
+            super(context, R.layout.row_layout , flights);
         }
-
         @Override
         public View getView(int position, View view, ViewGroup parent) {
 
@@ -64,6 +65,5 @@ public class ShowSearchedFlightsActivity extends Activity {
             rowField.setText(flights.get(position).toString());
             return rowView;
         }
-
     }
 }

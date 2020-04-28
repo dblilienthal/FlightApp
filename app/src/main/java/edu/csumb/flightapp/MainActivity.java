@@ -60,6 +60,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Button for Reserving Seat
+        Button reservation_button = findViewById(R.id.reserve_seat);
+        reservation_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(MAINACTIVITY, "onClick admin button called");
+                Intent intent = new Intent(MainActivity.this, SearchFlightActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         // TODO  for development use.  Should be deleted
 /*
