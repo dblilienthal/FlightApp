@@ -124,6 +124,20 @@
         android:id="@+id/confirm_total_amount"
         android:text="" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="Current Weather: " />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="80dp"
+        android:id="@+id/weather_field"
+        android:text="" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

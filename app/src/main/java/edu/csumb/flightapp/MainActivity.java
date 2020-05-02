@@ -81,43 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        // TODO  for development use.  Should be deleted
-/*
-        // button to show all flights
-        Button flight_button = findViewById(R.id.show_flights);
-        flight_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(MAINACTIVITY, "onClick show flights called");
-                Intent intent = new Intent(MainActivity.this, ShowFlightActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        // button for TestDB activity
-        Button testdb_button = findViewById(R.id.test_db);
-        testdb_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(MAINACTIVITY, "onClick  test db called");
-                Intent intent = new Intent(MainActivity.this, TestdbActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button manage_system_button = findViewById(R.id.manage_system);
-        manage_system_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(MAINACTIVITY, "onClick  manage_system called");
-                Intent intent = new Intent(MainActivity.this, CreateLogRecords.class);
-                startActivity(intent);
-            }
-        });
-*/
     }
 
     @Override
